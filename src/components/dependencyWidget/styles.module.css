@@ -1,0 +1,54 @@
+.columnElem {
+    background-color: aqua;
+}
+
+
+.titleBlock:before {
+    display: block;
+    content: ".";
+    color: transparent;
+    border-left: 10px solid #CCCDD1;
+    height: 100%;
+    position: absolute;
+    left: 0;
+}
+
+
+
+.blockMain {
+    margin-bottom: 0.0625rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    background-color: green;
+    border-radius: 4px;
+    color: white;
+    font-weight: 500;
+}
+
+.block {
+    margin-bottom: 0.0625rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    background-color: gray;
+    border-radius: 4px;
+    color: white;
+}
+
+
+.quick-starts .option {
+    border: 2px solid #f3f4f7;
+    font-size: 1rem;
+    color: #6c6c6d;
+    letter-spacing: -0.22px;
+    line-height: 1.25rem;
+    background: #fff;
+    cursor: pointer;
+}
+
+
+.selected {
+    background-color: #ee4c2c;
+    color: #fff;
+}
