@@ -26,8 +26,40 @@ function WidgetTry() {
 // use map to render each out, state to track which element is selected, render the last element based on conditions for each output
 
 // Store which index tab is active (Not all) (0 index)
+const elements = {
+    'build': [
+        {
+            id: 0,
+            content: "Post Nightly"
+
+        },
+        {
+            id: 1,
+            content: "Stable"
+        }
+    ],
+    'OS': [
+        {
+            id: 0,
+            content: "MACOS"
+
+        },
+        {
+            id: 1,
+            content: "Windows"
+
+        },
+        {
+            id: 2,
+            content: "Linux"
+
+        }
+    ]
+}
+
+
     const [currentState, setState] = useState({
-        'build': 1,
+        'build': 0,
         'os': 0,
     });
 
@@ -47,16 +79,29 @@ function WidgetTry() {
 
         // NOTE
         // Cannot assign to currentState (as it is a different elment)
-        const newState = {"build": 0, "OS": 0} // works
-        newState[stringIdentifier] = Number(lastId);
+        // We shouldn't reset the other states
+        console.log("currentState inside", currentState)
+
+        
+        const copyStateObject = {} // works
+
+        for(const key in currentState){
+            copyStateObject[key] =  currentState[key]
+        }
+
+        console.log("typeof(copyStateObject)", typeof(copyStateObject))
+
+        console.log("copyStateObject", copyStateObject)
+
+
+
+        copyStateObject[stringIdentifier] = Number(lastId);
 
         // currentState = lastId;
 
 
-        setState(newState)
+        setState(copyStateObject)
         // currentState[stringIdentifier] = Number(lastId);
-
-
     }
 
     const handleStateChange = (e) => {
@@ -68,36 +113,6 @@ function WidgetTry() {
         console.log(currentState)
     }
 
-    const elements = {
-        'build': [
-            {
-                id: 0,
-                content: "Post Nightly"
-
-            },
-            {
-                id: 1,
-                content: "Stable"
-            }
-        ],
-        'OS': [
-            {
-                id: 0,
-                content: "MACOS"
-
-            },
-            {
-                id: 1,
-                content: "Windows"
-
-            },
-            {
-                id: 2,
-                content: "Linux"
-
-            }
-        ]
-    }
 
     return (
       <Container>
@@ -150,14 +165,15 @@ function WidgetTry() {
             <Row className='os'>
 
             {elements['OS'].map((keys, indexI) => {
-                        console.log("currentState['build']", currentState['build'])
+                        console.log("currentState['os']", currentState['os'])
                         return(
                             <Col 
                             lg={4} 
                             md={4}
-                            id={'build' + indexI}
-                            key={'build' + indexI}
-                            className={styles.block}>
+                            id={'os' + indexI}
+                            key={'os' + indexI}
+                            className={[currentState['os'] == `${keys['id']}` ? `${styles.selected}`: `${styles.unselected}`, styles.block].join(' ')}
+                            onClick={handleStateChange}>
                                 
                                 {keys.content}
 
