@@ -164,26 +164,23 @@ const elements = {
 
             <Row className='os'>
 
-            {elements['OS'].map((keys, indexI) => {
-                        console.log("currentState['os']", currentState['os'])
-                        return(
-                            <Col 
-                            lg={4} 
-                            md={4}
-                            id={'os' + indexI}
-                            key={'os' + indexI}
-                            className={[currentState['os'] == `${keys['id']}` ? `${styles.selected}`: `${styles.unselected}`, styles.block].join(' ')}
-                            onClick={handleStateChange}>
-                                
+                {elements['OS'].map((keys, indexI) => {
+                            console.log("currentState['os']", currentState['os'])
+                            return(
+                                <Col 
+                                lg={4} 
+                                md={4}
+                                id={'os' + indexI}
+                                key={'os' + indexI}
+                                className={[currentState['os'] == `${keys['id']}` ? `${styles.selected}`: `${styles.unselected}`, styles.block].join(' ')}
+                                onClick={handleStateChange}>
+                                    
                                 {keys.content}
 
-                            </Col>
-                        )
-                    })
-                    }
-                    
-
-
+                                </Col>
+                            )
+                        })
+                }
 
             </Row>
 
