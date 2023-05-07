@@ -52,3 +52,21 @@
     background-color: #ee4c2c;
     color: #fff;
 }
+
+.contentDisplayNone{
+    display: none;
+}
+
+.contentDisplayOk{
+    display: block;
+}
+
+.comandBlock {
+    margin-bottom: 0.0625rem;
+    height: 2.5rem;
+    align-items: center;
+
+    background-color:#f0d1d1 ;
+
+    color: black;
+}

@@ -54,6 +54,64 @@ const elements = {
             content: "Linux"
 
         }
+    ],
+    'commands': [
+        {
+            id: 0,
+            content: "Download our Post Nightly and MacoS version here - [Link]",
+            renderCondition: {
+                "build": 0,
+                "os": 0 
+            }
+            // Contains the position of build tab and OS tab
+
+        },
+        {
+            id: 1,
+            content: "Download our Post Nightly and Windows version here - [Link]",
+            renderCondition: {
+                "build": 0,
+                "os": 1 
+            }
+
+        },
+        {
+            id: 2,
+            content: "Download our Post Nightly and Linux version here - [Link]",
+            renderCondition: {
+                "build": 0,
+                "os": 2 
+            }
+
+        },
+        {
+            id: 3,
+            content: "Download our Stable and MacoS version here - [Link]",
+            renderCondition: {
+                "build": 1,
+                "os": 0 
+            }
+
+        },
+        {
+            id: 4,
+            content: "Download our Stable and Windows version here - [Link]",
+            renderCondition: {
+                "build": 1,
+                "os": 1
+            }
+
+        },
+        {
+            id: 5,
+            content: "Download our Stable and Linux version here - [Link]",
+            renderCondition: {
+                "build": 1,
+                "os": 2
+            }
+
+        },
+
     ]
 }
 
@@ -111,6 +169,24 @@ const elements = {
         // const lastId= e.target.id[-1];
         alterCurrentState(e.target.id);
         console.log(currentState)
+    }
+
+    const renderCommands = (id) => {
+        // Compare current state with the valid state
+        const allCommandsArray = elements["commands"];
+        const renderConditionForCurrentId = allCommandsArray[id]["renderCondition"]
+
+        for(const key in currentState){
+
+            // Value in current State   
+            // Comapre the below value with 1st value in  
+
+            if(currentState[key]  != renderConditionForCurrentId[key])
+                return false;
+            
+        }
+
+        return true;
     }
 
 
@@ -185,7 +261,33 @@ const elements = {
             </Row>
 
 
-            <Row></Row>
+            <Row className='command'>
+                {/* Different possibilites will go here, based on the tab selected */}
+                {/* Total 6 possibilities, first experiment how to hide a specific block */}
+
+
+                {elements['commands'].map((keys, indexI) => {
+                            // console.log("currentState['os']", currentState['os'])
+                            return(
+                                <Col 
+                                lg={12} 
+                                md={12}
+                                id={'commands' + indexI}
+                                key={'commands' + indexI}
+                                className={[renderCommands(indexI) ? `${styles.contentDisplayOk}`: `${styles.contentDisplayNone}`, styles.comandBlock].join(' ')}>
+                                    
+                                {keys.content}
+
+                                </Col>
+                            )
+                        })
+                }
+
+
+
+
+
+            </Row>
             
             
             
