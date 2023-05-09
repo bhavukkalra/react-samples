@@ -141,6 +141,12 @@ dist
 # SvelteKit build / generate output
 .svelte-kit
 
+# build
+build/*
+
+# package-lock.json
+package-lock.json
+
 ### react ###
 .DS_*
 **/*.backup.*
